@@ -11,12 +11,9 @@ contract ScaffoldERC721A is ERC721A, Ownable {
     error ScaffoldERC721A__IsNotWithinMintWindow();
     error ScaffoldERC721A__YouGottaHitUpTheWeedman();
     error ScaffoldERC721A__NoTokensLeftToMint();
-    error ScaffoldERC721A__NotEnoughTokensLeftToMint();
+    error ScaffoldERC721A__NotEnoughMintableTokensToFulfillRequest();
     error ScaffoldERC721A__CannotMintThatMany();
     error ScaffoldERC721A__AddressNotZero();
-
-    error ScaffoldERC721A__MintNotWithinTimeframe();
-    error ScaffoldERC721A__MintNotEnoughMintPrice();
 
     event Minted(address user, uint256 startIndex, uint256 endIndex);
 
@@ -43,7 +40,6 @@ contract ScaffoldERC721A is ERC721A, Ownable {
         uint256 maxTokenCount;
         uint256 maxMintCountPerUser;
         address mintRoyaltyRecipient;
-        uint256 startTokenId;
     }
 
     constructor(ScaffoldERC721AParameters memory params)
@@ -56,7 +52,6 @@ contract ScaffoldERC721A is ERC721A, Ownable {
         s_mintPrice = params.mintPrice;
         s_maxTokenCount = params.maxTokenCount;
         s_maxMintCountPerUser = params.maxMintCountPerUser;
-        s_startTokenId = params.startTokenId;
 
         if (params.mintRoyaltyRecipient == address(0)) {
             revert ScaffoldERC721A__AddressNotZero();
@@ -79,7 +74,7 @@ contract ScaffoldERC721A is ERC721A, Ownable {
         }
 
         if (_totalMinted() + amount > s_maxTokenCount) {
-            revert ScaffoldERC721A__NotEnoughTokensLeftToMint();
+            revert ScaffoldERC721A__NotEnoughMintableTokensToFulfillRequest();
         }
 
         if (s_mintAmount[recipient] + amount > s_maxMintCountPerUser) {
@@ -113,8 +108,8 @@ contract ScaffoldERC721A is ERC721A, Ownable {
         );
     }
 
-    function _startTokenId() internal view override returns (uint256) {
-        return s_startTokenId;
+    function _startTokenId() internal pure override returns (uint256) {
+        return 1;
     }
 
     function getMintStartTimestamp() public view returns (uint256) {

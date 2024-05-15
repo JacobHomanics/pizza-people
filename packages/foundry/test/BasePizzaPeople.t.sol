@@ -5,14 +5,14 @@ import "forge-std/Test.sol";
 import "../contracts/PizzaPeople.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-abstract contract BasePizzaPeople is Test {
+abstract contract BasePizzaPeopleTest is Test {
     PizzaPeople public yourContract;
 
     address mintRoyaltyRecipient = vm.addr(1);
     address USER = vm.addr(2);
 
     string BASE_URI =
-        "https://nft.bueno.art/api/contract/0zJlzGVsEKj7cALqS-QMX/chain/1/metadata/";
+        "ipfs://bafybeicpvzgkhgyhwggrtctzvztuk2mftmt56xogv6pi7mx2v42go35ltu/";
 
     uint256 s_maxMintCount = 24420;
     uint256 MINT_START_TIMESTAMP;
@@ -41,11 +41,10 @@ abstract contract BasePizzaPeople is Test {
             "ipfs://bafybeicpvzgkhgyhwggrtctzvztuk2mftmt56xogv6pi7mx2v42go35ltu/",
             MINT_START_TIMESTAMP,
             MINT_END_TIMESTAMP,
-            0.1 ether,
+            s_mintPrice,
             s_maxMintCount,
             420,
-            mintRoyaltyRecipient,
-            1
+            mintRoyaltyRecipient
         );
 
         yourContract = new PizzaPeople(params, users);

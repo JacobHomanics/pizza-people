@@ -105,8 +105,7 @@ contract DeployScript is ScaffoldETHDeploy {
             0.1 ether,
             maxMintCount,
             420,
-            mintRoyaltyRecipient,
-            1
+            mintRoyaltyRecipient
         );
 
         PizzaPeople yourContract =
