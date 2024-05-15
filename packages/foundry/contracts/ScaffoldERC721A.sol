@@ -4,8 +4,9 @@ pragma solidity >=0.8.0 <0.9.0;
 import "forge-std/console.sol";
 import "./Constraints.sol";
 import "../lib/ERC721A/contracts/ERC721A.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ScaffoldERC721A is ERC721A {
+contract ScaffoldERC721A is ERC721A, Ownable {
     error ScaffoldERC721A__DidNotProvideEnoughCapital();
     error ScaffoldERC721A__IsNotWithinMintWindow();
     error ScaffoldERC721A__YouGottaHitUpTheWeedman();
@@ -23,6 +24,7 @@ contract ScaffoldERC721A is ERC721A {
     uint256 immutable s_mintStartTimestamp;
     uint256 immutable s_mintEndTimestamp;
     uint256 immutable s_mintPrice;
+    address immutable s_mintRoyaltyRecipient;
 
     uint256 s_startTokenId;
     uint256 s_maxTokenCount;
@@ -31,6 +33,7 @@ contract ScaffoldERC721A is ERC721A {
     mapping(address user => uint256) s_mintAmount;
 
     struct ScaffoldERC721AParameters {
+        address owner;
         string name;
         string symbol;
         string baseURI;
@@ -39,6 +42,7 @@ contract ScaffoldERC721A is ERC721A {
         uint256 mintPrice;
         uint256 maxTokenCount;
         uint256 maxMintCountPerUser;
+        address mintRoyaltyRecipient;
         uint256 startTokenId;
     }
 
@@ -53,6 +57,7 @@ contract ScaffoldERC721A is ERC721A {
         // uint256 maxMintCountPerUser,
         // uint256 startTokenId
         ERC721A(params.name, params.symbol)
+        Ownable(params.owner)
     {
         s_baseURI = params.baseURI;
         s_mintStartTimestamp = params.mintStartTimestamp;
@@ -61,6 +66,12 @@ contract ScaffoldERC721A is ERC721A {
         s_maxTokenCount = params.maxTokenCount;
         s_maxMintCountPerUser = params.maxMintCountPerUser;
         s_startTokenId = params.startTokenId;
+
+        if (params.mintRoyaltyRecipient == address(0)) {
+            revert ScaffoldERC721A__AddressNotZero();
+        }
+
+        s_mintRoyaltyRecipient = params.mintRoyaltyRecipient;
     }
 
     function mint(address recipient, uint256 amount) public payable {
@@ -93,6 +104,18 @@ contract ScaffoldERC721A is ERC721A {
         super._mint(recipient, amount);
     }
 
+    function withdraw() external returns (bool) {
+        (bool sent,) =
+            s_mintRoyaltyRecipient.call{value: address(this).balance}("");
+        require(sent, "Failed to send Ether");
+
+        return sent;
+    }
+
+    function _baseURI() internal view override returns (string memory) {
+        return s_baseURI;
+    }
+
     function isWithinConstraints() public view returns (bool isWithin) {
         isWithin = Constraints.isWithin(
             block.timestamp, getMintStartTimestamp(), getMintEndTimestamp()
@@ -123,7 +146,7 @@ contract ScaffoldERC721A is ERC721A {
         mintPrice = s_mintPrice;
     }
 
-    function _baseURI() internal view override returns (string memory) {
-        return s_baseURI;
+    function getMintRoyaltyRecipient() external view returns (address) {
+        return s_mintRoyaltyRecipient;
     }
 }

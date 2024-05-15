@@ -96,6 +96,7 @@ contract DeployScript is ScaffoldETHDeploy {
 
         ScaffoldERC721A.ScaffoldERC721AParameters memory params =
         ScaffoldERC721A.ScaffoldERC721AParameters(
+            newOwner,
             "Pizza People",
             "PP",
             "ipfs://bafybeicpvzgkhgyhwggrtctzvztuk2mftmt56xogv6pi7mx2v42go35ltu/",
@@ -104,12 +105,12 @@ contract DeployScript is ScaffoldETHDeploy {
             0.1 ether,
             maxMintCount,
             420,
+            mintRoyaltyRecipient,
             1
         );
 
-        PizzaPeople yourContract = new PizzaPeople(
-            params, newOwner, mintRoyaltyRecipient, initialMintRecipients
-        );
+        PizzaPeople yourContract =
+            new PizzaPeople(params, initialMintRecipients);
 
         console.logString(
             string.concat(
