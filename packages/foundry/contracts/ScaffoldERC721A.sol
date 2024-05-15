@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
+pragma solidity >=0.8.19;
 
 import "forge-std/console.sol";
 import "./Constraints.sol";
@@ -47,15 +47,6 @@ contract ScaffoldERC721A is ERC721A, Ownable {
     }
 
     constructor(ScaffoldERC721AParameters memory params)
-        // string memory name,
-        // string memory symbol,
-        // string memory baseURI,
-        // uint256 mintStartTimestamp,
-        // uint256 mintEndTimestamp,
-        // uint256 mintPrice,
-        // uint256 maxTokenCount,
-        // uint256 maxMintCountPerUser,
-        // uint256 startTokenId
         ERC721A(params.name, params.symbol)
         Ownable(params.owner)
     {
