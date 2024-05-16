@@ -272,7 +272,7 @@ const Home: NextPage = () => {
         )} */}
 
         <form onSubmit={onSubmit} className="flex flex-col p-2 m-2">
-          <p className="text-center grilledCheese text-4xl">Amount of Slices (to mint)</p>
+          <p className="text-center grilledCheese text-4xl">How many slices (to mint)</p>
           <div className="flex items-center justify-center">
             <button onClick={DecreaseItem} className="grilledCheese text-4xl">
               {"<"}
@@ -305,7 +305,7 @@ const Home: NextPage = () => {
           }}
           className="insanibc btn btn-secondary btn-lg text-3xl mt-5"
         >
-          {"Gimme a slice!"}
+          {"Grab a slice!"}
         </button>
         <p className="m-0 mb-10 grilledCheese">*Mint</p>
 
