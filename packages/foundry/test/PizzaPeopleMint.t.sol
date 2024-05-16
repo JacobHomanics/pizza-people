@@ -8,7 +8,7 @@ import {BasePizzaPeopleTest} from "./BasePizzaPeople.t.sol";
 import "../contracts/PizzaPeople.sol";
 import "../contracts/ScaffoldERC721A.sol";
 
-contract WeediesMintTest is BasePizzaPeopleTest {
+contract PizzaPeopleMintTest is BasePizzaPeopleTest {
     constructor() BasePizzaPeopleTest(0, 100, 0) {}
 
     function testMint() public {
@@ -21,7 +21,7 @@ contract WeediesMintTest is BasePizzaPeopleTest {
         );
     }
 
-    function testRevertMintTheDealerIsNotAround(uint256 timestamp) public {
+    function testRevertMintIsNotWithinMintWindow(uint256 timestamp) public {
         vm.assume(
             timestamp < MINT_START_TIMESTAMP || timestamp > MINT_END_TIMESTAMP
         );
@@ -35,7 +35,7 @@ contract WeediesMintTest is BasePizzaPeopleTest {
         yourContract.mint(USER, 1);
     }
 
-    function testRevertTheDealerIsAllOuttaTheWeed() public {
+    function testRevertNoTokensLeftToMint() public {
         for (uint256 j = 0; j < s_maxMintCount - 1; j++) {
             vm.prank(vm.addr(j + 1));
             yourContract.mint(vm.addr(j + 1), 1);
@@ -47,7 +47,7 @@ contract WeediesMintTest is BasePizzaPeopleTest {
         yourContract.mint(USER, 1);
     }
 
-    function testRevertTheDealerIsGonnaBeOutOfWeed() public {
+    function testRevertNotEnoughMintableTokensToFulfillRequest() public {
         for (uint256 j = 0; j < s_maxMintCount - 5; j++) {
             vm.prank(vm.addr(j + 1));
             yourContract.mint(vm.addr(j + 1), 1);
@@ -61,7 +61,7 @@ contract WeediesMintTest is BasePizzaPeopleTest {
         yourContract.mint(USER, 20);
     }
 
-    function testRevertUserMaxedMintCount() public {
+    function testRevertCannotMintThatMany() public {
         vm.prank(USER);
         yourContract.mint(USER, 419);
 
