@@ -94,7 +94,7 @@ export const Header = () => {
           </div>
           <div className="flex flex-col">
             <span className="font-bold leading-tight">Pizza People</span>
-            <span className="text-xs">The cheesiest guys around!</span>
+            <span className="text-xs">The cheesiest ones in town!</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
