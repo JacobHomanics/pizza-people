@@ -10,7 +10,7 @@ import type { NextPage } from "next";
 import { formatEther } from "viem";
 import { useAccount } from "wagmi";
 import { HeartIcon } from "@heroicons/react/24/outline";
-// import { NftCard } from "~~/components/NftCard";
+import { NftCard } from "~~/components/NftCard";
 import { Address } from "~~/components/scaffold-eth";
 import {
   useScaffoldContract,
@@ -25,6 +25,7 @@ import mark from "~~/public/Mark-pfp.jpg";
 import fc from "~~/public/farcaster.png";
 import ig from "~~/public/instagram.png";
 // import bagOfWeed from "~~/public/weed-bag.png";
+import previewImage from "~~/public/preview.png";
 import twitter from "~~/public/x.png";
 
 // const DynamicCarousel = dynamic(() => import("../components/Carousel"), {
@@ -262,7 +263,9 @@ const Home: NextPage = () => {
               await refetchMaxMintCount();
             }}
           >
-            <NftCard imgSrc={bagOfWeed.src} />
+          */}
+        <NftCard imgSrc={previewImage.src} />
+        {/*
           </button>
         )} */}
 
