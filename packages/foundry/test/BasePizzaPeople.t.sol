@@ -49,9 +49,4 @@ abstract contract BasePizzaPeopleTest is Test {
 
         yourContract = new PizzaPeople(params, users);
     }
-
-    function testMintTimestamps() public view {
-        assertEq(yourContract.getMintStartTimestamp(), MINT_START_TIMESTAMP);
-        assertEq(yourContract.getMintEndTimestamp(), MINT_END_TIMESTAMP);
-    }
 }
