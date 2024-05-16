@@ -152,7 +152,7 @@ const Home: NextPage = () => {
   } else {
     mintWindowOutput = (
       <div className="flex flex-col text-center bg-base-100 rounded-lg p-0 lg:p-2 w-40 lg:w-96 m-1">
-        <p className="grilledCheese text-md lg:text-4xl m-0 text-secondary -m-1">The Weedman has arrived!</p>
+        <p className="grilledCheese text-md lg:text-4xl m-0 text-secondary -m-1">The Pizza Shop is closed!</p>
       </div>
     );
   }
@@ -246,9 +246,9 @@ const Home: NextPage = () => {
           <span className="text-red-600">24,420</span> toasted, fun-loving weirdos living their best life, one toke at a
           time!
         </p>
-        <p className="grilledCheese text-2xl text-secondary lg:text-4xl">Tasty Samples</p>
+        <p className="grilledCheese text-2xl text-secondary lg:text-4xl">Cheesy Samples</p>
         {/* <DynamicCarousel /> */}
-        <p className="grilledCheese text-2xl lg:text-4xl">Twist one up!</p>
+        <p className="grilledCheese text-2xl lg:text-4xl">Slice the pie!</p>
 
         {/* {responses.length > 0 ? (
           <>
@@ -270,7 +270,7 @@ const Home: NextPage = () => {
         )} */}
 
         <form onSubmit={onSubmit} className="flex flex-col p-2 m-2">
-          <p className="text-center grilledCheese text-4xl">Number of Nugs (to mint)</p>
+          <p className="text-center grilledCheese text-4xl">Amount of Slices (to mint)</p>
           <div className="flex items-center justify-center">
             <button onClick={DecreaseItem} className="grilledCheese text-4xl">
               {"<"}
