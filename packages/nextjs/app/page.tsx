@@ -250,7 +250,7 @@ const Home: NextPage = () => {
         </p>
         <p className="grilledCheese text-2xl text-secondary lg:text-4xl">Cheesy Samples</p>
         <DynamicCarousel />
-        <p className="grilledCheese text-2xl lg:text-4xl m-10">Ready to deliver the party to you</p>
+        <p className="grilledCheese text-2xl lg:text-4xl m-7">Ready to deliver the party to you</p>
 
         {/* {responses.length > 0 ? (
           <>
