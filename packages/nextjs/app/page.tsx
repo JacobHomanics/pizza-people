@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useState } from "react";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import hero from "../public/hero.png";
 import type { NextPage } from "next";
@@ -28,10 +28,10 @@ import ig from "~~/public/instagram.png";
 import previewImage from "~~/public/preview.png";
 import twitter from "~~/public/x.png";
 
-// const DynamicCarousel = dynamic(() => import("../components/Carousel"), {
-//   loading: () => <p>Loading...</p>,
-//   ssr: false,
-// });
+const DynamicCarousel = dynamic(() => import("../components/Carousel"), {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
 
 const Home: NextPage = () => {
   const [nugsToMint, setNugsToMint] = useState<number>(1);
@@ -247,7 +247,7 @@ const Home: NextPage = () => {
           time!
         </p>
         <p className="grilledCheese text-2xl text-secondary lg:text-4xl">Cheesy Samples</p>
-        {/* <DynamicCarousel /> */}
+        <DynamicCarousel />
         <p className="grilledCheese text-2xl lg:text-4xl">Slice the pie!</p>
 
         {/* {responses.length > 0 ? (
@@ -303,7 +303,7 @@ const Home: NextPage = () => {
           }}
           className="insanibc btn btn-secondary btn-lg text-3xl mt-5"
         >
-          {"Let's toke it!"}
+          {"Gimme a slice!"}
         </button>
         <p className="m-0 mb-10 grilledCheese">*Mint</p>
 
