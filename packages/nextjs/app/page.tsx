@@ -18,12 +18,12 @@ import {
   useScaffoldReadContract, // useScaffoldWatchContractEvent, // useScaffoldEventSubscriber,
   useScaffoldWriteContract,
 } from "~~/hooks/scaffold-eth";
-import noreen from "~~/public/pfps/Noreen.jpg";
 // import { useFetches } from "~~/hooks/useFetches";
 // import { useUris } from "~~/hooks/useUris";
 import jake from "~~/public/pfps/jake.jpg";
 import klim from "~~/public/pfps/klim.jpg";
 import mark from "~~/public/pfps/mark.jpg";
+import noreen from "~~/public/pfps/noreen.jpg";
 import previewImage from "~~/public/preview.png";
 
 const DynamicCarousel = dynamic(() => import("../components/Carousel"), {
