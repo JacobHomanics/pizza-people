@@ -11,22 +11,20 @@ import { formatEther } from "viem";
 import { useAccount } from "wagmi";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { NftCard } from "~~/components/NftCard";
+import { PfpCard } from "~~/components/PfpCard";
 import { Address } from "~~/components/scaffold-eth";
 import {
   useScaffoldContract,
-  useScaffoldReadContract,
-  useScaffoldWriteContract, // useScaffoldEventSubscriber,
+  useScaffoldReadContract, // useScaffoldWatchContractEvent, // useScaffoldEventSubscriber,
+  useScaffoldWriteContract,
 } from "~~/hooks/scaffold-eth";
+import noreen from "~~/public/pfps/Noreen.jpg";
 // import { useFetches } from "~~/hooks/useFetches";
 // import { useUris } from "~~/hooks/useUris";
 import jake from "~~/public/pfps/jake.jpg";
 import klim from "~~/public/pfps/klim.jpg";
 import mark from "~~/public/pfps/mark.jpg";
-// import bagOfWeed from "~~/public/weed-bag.png";
 import previewImage from "~~/public/preview.png";
-import fc from "~~/public/social-icons/farcaster.png";
-import ig from "~~/public/social-icons/instagram.png";
-import twitter from "~~/public/social-icons/x.png";
 
 const DynamicCarousel = dynamic(() => import("../components/Carousel"), {
   loading: () => <p>Loading...</p>,
@@ -39,11 +37,6 @@ const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
 
   const { writeContractAsync: writePizzaPeopleAsync } = useScaffoldWriteContract("PizzaPeople");
-
-  // const { writeAsync: mint } = useScaffoldWriteContract({
-  //   functionName: "mint",
-  //   args: [connectedAddress, BigInt(nugsToMint)],
-  // });
 
   const { data: startMintTimestamp } = useScaffoldReadContract({
     contractName: "PizzaPeople",
@@ -161,24 +154,28 @@ const Home: NextPage = () => {
 
   // const [mintedTokenIds, setMintedTokenIds] = useState<bigint[]>([]);
 
-  // useScaffoldEventSubscriber({
-  //   contractName: "Weedies",
+  // useScaffoldWatchContractEvent({
+  //   contractName: "PizzaPeople",
   //   eventName: "Minted",
-  //   listener: logs => {
-  //     const tokenIds: bigint[] = [];
+  //   onLogs: logs => {
+  //     // const tokenIds: bigint[] = [];
+
+  //     console.log(logs);
 
   //     logs.map(log => {
+  //       console.log(log);
+  //       console.log(log.args);
   //       const { user, startIndex, endIndex } = log.args;
 
-  //       if (user === connectedAddress) {
-  //         for (let i = Number(startIndex) || 0; i < Number(endIndex); i++) {
-  //           tokenIds.push(BigInt(i) || BigInt(0));
-  //         }
-  //         // setMintedTokenId(tokenId);
-  //       }
+  //       // if (user === connectedAddress) {
+  //       //   for (let i = Number(startIndex) || 0; i < Number(endIndex); i++) {
+  //       //     tokenIds.push(BigInt(i) || BigInt(0));
+  //       //   }
+  //       //   // setMintedTokenId(tokenId);
+  //       // }
   //     });
 
-  //     setMintedTokenIds([...tokenIds]);
+  //     // setMintedTokenIds([...tokenIds]);
   //   },
   // });
 
@@ -346,64 +343,28 @@ const Home: NextPage = () => {
 
         <p className="grilledCheese text-4xl m-0 text-violet-800">Team</p>
         <div className="flex text-center">
-          <div className="m-5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={mark.src} alt="mark" className="lg:w-[275px]" />
-            <p className="m-1 lg:m-4 grilledCheese lg:text-4xl">Mark</p>
-            {/* <p className="m-0 grilledCheese">{`"Grape Kush"`}</p> */}
-            <div className="flex space-x-1 items-center justify-center">
-              <Link href="https://twitter.com/gbombstudios">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={twitter.src} alt="x" className="w-7 lg:w-10" />
-              </Link>
-              <Link href="https://www.warpcast.com/greenbomb">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={fc.src} alt="fc" className="w-7 lg:w-10" />
-              </Link>
-              <Link href="https://www.instagram.com/greenbomb/">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ig.src} alt="ig" className="w-7 lg:w-10" />
-              </Link>
-            </div>
-          </div>
-          <div className="m-5 ">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={klim.src} alt="klim" className="lg:w-[275px]" />
-            <p className="m-1 lg:m-4 grilledCheese lg:text-4xl">Klim</p>
-            {/* <p className="m-0 grilledCheese">{`"OG Bush"`}</p> */}
-            <div className="flex space-x-1 items-center justify-center">
-              <Link href="https://www.twitter.com/bigshottoyworks">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={twitter.src} alt="x" className="w-7 lg:w-10" />
-              </Link>
+          <PfpCard
+            name="Mark"
+            image={mark}
+            twitterUrl="https://twitter.com/gbombstudios"
+            farcasterUrl="https://www.warpcast.com/greenbomb"
+            instagramUrl="https://www.instagram.com/greenbomb/"
+          />
 
-              <Link href="https://www.warpcast.com/bigshotklim">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={fc.src} alt="fc" className="w-7 lg:w-10" />
-              </Link>
-              <Link href="https://www.instagram.com/bigshottoyworks/">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ig.src} alt="ig" className="w-7 lg:w-10" />
-              </Link>
-            </div>
-          </div>
-          <div className="m-5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={jake.src} alt="jake" className="lg:w-[275px]" />
-            <p className="m-1 lg:m-4 grilledCheese lg:text-4xl">Jake</p>
-            {/* <p className="m-0 grilledCheese">{`"Acapulco Gold"`}</p> */}
-            <div className="flex space-x-1 items-center justify-center">
-              <Link href="https://twitter.com/homanics">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={twitter.src} alt="x" className="w-7 lg:w-10" />
-              </Link>
-
-              <Link href="https://warpcast.com/hotmanics">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={fc.src} alt="fc" className="w-7 lg:w-10" />
-              </Link>
-            </div>
-          </div>
+          <PfpCard
+            name="Klim"
+            image={klim}
+            twitterUrl="https://www.twitter.com/bigshottoyworks"
+            farcasterUrl="https://www.warpcast.com/bigshotklim"
+            instagramUrl="https://www.instagram.com/bigshottoyworks/"
+          />
+          <PfpCard
+            name="Jake"
+            image={jake}
+            twitterUrl="https://www.twitter.com/homanics"
+            farcasterUrl="https://www.warpcast.com/hotmanics"
+          />
+          <PfpCard name="Noreen" image={noreen} instagramUrl="https://www.instagram.com/nonodynamo" />
         </div>
 
         <div className="flex justify-center items-center gap-2 mb-4  mt-10">
