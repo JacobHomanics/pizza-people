@@ -25,7 +25,7 @@ contract DeployScript is ScaffoldETHDeploy {
         }
 
         if (chainId == 31337) {
-            maxMintCount = 24420;
+            maxMintCount = 5678;
 
             mintStartTimestamp = (vm.unixTime() / 1000) + 20 seconds;
             mintEndTimestamp = 0; //(vm.unixTime() / 1000) + 1 days;
@@ -41,7 +41,7 @@ contract DeployScript is ScaffoldETHDeploy {
             initialMintRecipients[2] =
                 0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
         } else if (chainId == 11155111) {
-            maxMintCount = 24420;
+            maxMintCount = 5678;
 
             mintStartTimestamp = (vm.unixTime() / 1000) + 20 seconds;
             mintEndTimestamp = 0;
@@ -57,7 +57,7 @@ contract DeployScript is ScaffoldETHDeploy {
             initialMintRecipients[2] =
                 0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
         } else if (chainId == 8453) {
-            maxMintCount = 24420;
+            maxMintCount = 5678;
 
             mintStartTimestamp = 1713589200;
             mintEndTimestamp = 0;
@@ -99,7 +99,7 @@ contract DeployScript is ScaffoldETHDeploy {
             newOwner,
             "Pizza People",
             "PP",
-            "ipfs://bafybeicpvzgkhgyhwggrtctzvztuk2mftmt56xogv6pi7mx2v42go35ltu/",
+            "ipfs://bafybeih6w26bakuxg2y2kr63dl76k7hbjh3mkvsfnbzpuq2xpmpyvsny6i/",
             mintStartTimestamp,
             mintEndTimestamp,
             0.1 ether,

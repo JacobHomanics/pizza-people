@@ -17,13 +17,13 @@ import {
   useScaffoldReadContract,
   useScaffoldWriteContract, // useScaffoldEventSubscriber,
 } from "~~/hooks/scaffold-eth";
-// import { useFetches } from "~~/hooks/useFetches";
-// import { useUris } from "~~/hooks/useUris";
-import jake from "~~/public/Jake-pfp.png";
-import klim from "~~/public/Klim-pfp.jpg";
-import mark from "~~/public/Mark-pfp.jpg";
 import fc from "~~/public/farcaster.png";
 import ig from "~~/public/instagram.png";
+// import { useFetches } from "~~/hooks/useFetches";
+// import { useUris } from "~~/hooks/useUris";
+import jake from "~~/public/jake-pfp.jpg";
+import klim from "~~/public/klim-pfp.jpg";
+import mark from "~~/public/mark-pfp.jpg";
 // import bagOfWeed from "~~/public/weed-bag.png";
 import previewImage from "~~/public/preview.png";
 import twitter from "~~/public/x.png";
@@ -152,7 +152,7 @@ const Home: NextPage = () => {
   } else {
     mintWindowOutput = (
       <div className="flex flex-col text-center bg-base-100 rounded-lg p-0 lg:p-2 w-40 lg:w-96 m-1">
-        <p className="grilledCheese text-md lg:text-4xl m-0 text-secondary -m-1">The Pizza Shop is closed!</p>
+        <p className="grilledCheese text-md lg:text-4xl m-0 text-secondary -m-1">The Pizza Shop is open!</p>
       </div>
     );
   }
@@ -237,7 +237,7 @@ const Home: NextPage = () => {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={hero.src} alt="Test" className="w-[400px] lg:w-[1051px] lg:h-[670px] lg:mb-4" />{" "}
           {/* 1366px x 870px*/}
-          <div className="flex flex-wrap justify-center w-[150px] lg:w-[400px] absolute lg:inset-0 lg:h-[100px] left-[210px] lg:left-[575px] top-[50px] lg:top-[125px]">
+          <div className="flex flex-wrap justify-center w-[150px] lg:w-[400px] absolute lg:inset-0 lg:h-[100px] left-[250px] lg:left-[650px] top-[30px] lg:top-[125px]">
             {mintWindowOutput}
           </div>
         </div>
@@ -250,7 +250,7 @@ const Home: NextPage = () => {
         </p>
         <p className="grilledCheese text-2xl text-secondary lg:text-4xl">Cheesy Samples</p>
         <DynamicCarousel />
-        <p className="grilledCheese text-2xl lg:text-4xl m-7">Ready to deliver the party to you</p>
+        <p className="grilledCheese text-center text-2xl lg:text-4xl m-7">Ready to deliver the party to you</p>
 
         {/* {responses.length > 0 ? (
           <>
