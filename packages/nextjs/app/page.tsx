@@ -364,7 +364,12 @@ const Home: NextPage = () => {
             twitterUrl="https://www.twitter.com/homanics"
             farcasterUrl="https://www.warpcast.com/hotmanics"
           />
-          <PfpCard name="Noreen" image={noreen} instagramUrl="https://www.instagram.com/nonodynamo" />
+          <PfpCard
+            name="Noreen"
+            image={noreen}
+            instagramUrl="https://www.instagram.com/nonodynamo"
+            linkedinUrl="https://www.linkedin.com/in/noreensullivan/"
+          />
         </div>
 
         <div className="flex justify-center items-center gap-2 mb-4  mt-10">

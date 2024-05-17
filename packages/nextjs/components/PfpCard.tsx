@@ -3,6 +3,7 @@
 import Link from "next/link";
 import fc from "~~/public/social-icons/farcaster.png";
 import ig from "~~/public/social-icons/instagram.png";
+import linkedin from "~~/public/social-icons/linkedin.png";
 import twitter from "~~/public/social-icons/x.png";
 
 type Props = {
@@ -11,9 +12,10 @@ type Props = {
   twitterUrl?: string;
   farcasterUrl?: string;
   instagramUrl?: string;
+  linkedinUrl?: string;
 };
 
-export const PfpCard = ({ name, image, twitterUrl, farcasterUrl, instagramUrl }: Props) => {
+export const PfpCard = ({ name, image, twitterUrl, farcasterUrl, instagramUrl, linkedinUrl }: Props) => {
   return (
     <div className="m-5">
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -40,6 +42,14 @@ export const PfpCard = ({ name, image, twitterUrl, farcasterUrl, instagramUrl }:
           <Link href={instagramUrl}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={ig.src} alt="ig" className="w-7 lg:w-10" />
+          </Link>
+        ) : (
+          <></>
+        )}
+        {linkedinUrl ? (
+          <Link href={linkedinUrl}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={linkedin.src} alt="ig" className="w-7 lg:w-10" />
           </Link>
         ) : (
           <></>
