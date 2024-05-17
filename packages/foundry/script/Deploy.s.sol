@@ -109,7 +109,7 @@ contract DeployScript is ScaffoldETHDeploy {
         );
 
         PizzaPeople yourContract =
-            new PizzaPeople(params, initialMintRecipients);
+            new PizzaPeople(params, initialMintRecipients, "");
 
         console.logString(
             string.concat(

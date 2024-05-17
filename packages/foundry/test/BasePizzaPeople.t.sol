@@ -47,6 +47,6 @@ abstract contract BasePizzaPeopleTest is Test {
             mintRoyaltyRecipient
         );
 
-        yourContract = new PizzaPeople(params, users);
+        yourContract = new PizzaPeople(params, users, "");
     }
 }

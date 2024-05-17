@@ -14,10 +14,12 @@ import { NftCard } from "~~/components/NftCard";
 import { PfpCard } from "~~/components/PfpCard";
 import { Address } from "~~/components/scaffold-eth";
 import {
-  useScaffoldContract,
+  useScaffoldContract, // useScaffoldEventHistory,
   useScaffoldReadContract, // useScaffoldWatchContractEvent, // useScaffoldEventSubscriber,
   useScaffoldWriteContract,
 } from "~~/hooks/scaffold-eth";
+// import { useFetches } from "~~/hooks/useFetches";
+// import { useUris } from "~~/hooks/useUris";
 // import { useFetches } from "~~/hooks/useFetches";
 // import { useUris } from "~~/hooks/useUris";
 import jake from "~~/public/pfps/jake.jpg";
@@ -154,6 +156,37 @@ const Home: NextPage = () => {
 
   // const [mintedTokenIds, setMintedTokenIds] = useState<bigint[]>([]);
 
+  // const { data: blockNumber } = useBlockNumber();
+
+  // const [mintedBlock, setMintedBlock] = useState<bigint>();
+
+  // const userAccount = useAccount();
+
+  // console.log(mintedBlock);
+  // const {
+  //   data: events,
+  //   isLoading: isLoadingEvents,
+  //   error: errorReadingEvents,
+  // } = useScaffoldEventHistory({
+  //   contractName: "PizzaPeople",
+  //   eventName: "Minted",
+  //   fromBlock: mintedBlock!,
+  //   watch: true,
+  //   filters: { user: userAccount.address },
+  //   blockData: true,
+  //   transactionData: true,
+  //   receiptData: true,
+  // });
+
+  // const tokenIds: bigint[] = [];
+  // events!.map(log => {
+  //   const { user, startIndex, endIndex } = log.args;
+
+  //   for (let i = Number(startIndex) || 0; i < Number(endIndex); i++) {
+  //     tokenIds.push(BigInt(i) || BigInt(0));
+  //   }
+  // });
+
   // useScaffoldWatchContractEvent({
   //   contractName: "PizzaPeople",
   //   eventName: "Minted",
@@ -204,7 +237,7 @@ const Home: NextPage = () => {
     setNugsToMint(Number(target.value));
   }
 
-  // const { uris } = useUris(Weedies, mintedTokenIds);
+  // const { uris } = useUris(Weedies, tokenIds);
 
   // for (let i = 0; i < uris.length; i++) {
   //   uris[i] = uris[i].replace("ipfs://", "https://nftstorage.link/ipfs/");
@@ -256,16 +289,19 @@ const Home: NextPage = () => {
         ) : (
           <button
             onClick={async () => {
-              await mint({ args: [connectedAddress, BigInt(nugsToMint)], value: mintPrice });
+              setMintedBlock(blockNumber);
+              await writePizzaPeopleAsync({
+                functionName: "mint",
+                args: [connectedAddress, BigInt(nugsToMint)],
+                value: mintPrice ? mintPrice * BigInt(nugsToMint) : BigInt(0),
+              });
               await refetchMintPrice();
               await refetchMintCount();
               await refetchMaxMintCount();
             }}
-          >
-          */}
+          > */}
         <NftCard imgSrc={previewImage.src} />
-        {/*
-          </button>
+        {/* </button>
         )} */}
 
         <form onSubmit={onSubmit} className="flex flex-col p-2 m-2">
@@ -289,6 +325,8 @@ const Home: NextPage = () => {
 
         <button
           onClick={async () => {
+            // setMintedBlock(blockNumber);
+
             // await mint({ value: mintPrice });
             await writePizzaPeopleAsync({
               functionName: "mint",

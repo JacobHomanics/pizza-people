@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     Constraints: {
-      address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+      address: "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB",
       abi: [
         {
           type: "function",
@@ -42,7 +42,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     PizzaPeople: {
-      address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+      address: "0x9E545E3C0baAB3E08CdfD552C960A1050f373042",
       abi: [
         {
           type: "constructor",
@@ -108,6 +108,11 @@ const deployedContracts = {
               name: "initialMintRecipients",
               type: "address[]",
               internalType: "address[]",
+            },
+            {
+              name: "baseURIHeadshot",
+              type: "string",
+              internalType: "string",
             },
           ],
           stateMutability: "nonpayable",
@@ -177,6 +182,25 @@ const deployedContracts = {
               name: "mintCount",
               type: "uint256",
               internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getIsHeadshotActive",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
             },
           ],
           stateMutability: "view",
@@ -456,6 +480,19 @@ const deployedContracts = {
         },
         {
           type: "function",
+          name: "toggleHeadshot",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
           name: "tokenURI",
           inputs: [
             {
@@ -623,19 +660,19 @@ const deployedContracts = {
             {
               name: "user",
               type: "address",
-              indexed: false,
+              indexed: true,
               internalType: "address",
             },
             {
               name: "startIndex",
               type: "uint256",
-              indexed: false,
+              indexed: true,
               internalType: "uint256",
             },
             {
               name: "endIndex",
               type: "uint256",
-              indexed: false,
+              indexed: true,
               internalType: "uint256",
             },
           ],
@@ -759,6 +796,11 @@ const deployedContracts = {
         },
         {
           type: "error",
+          name: "PizzaPeople__NotOwnerOfToken",
+          inputs: [],
+        },
+        {
+          type: "error",
           name: "ScaffoldERC721A__AddressNotZero",
           inputs: [],
         },
@@ -838,33 +880,7 @@ const deployedContracts = {
           inputs: [],
         },
       ],
-      inheritedFunctions: {
-        approve: "contracts/ScaffoldERC721A.sol",
-        balanceOf: "contracts/ScaffoldERC721A.sol",
-        getApproved: "contracts/ScaffoldERC721A.sol",
-        getCurrentTokenCount: "contracts/ScaffoldERC721A.sol",
-        getMaxTokenCount: "contracts/ScaffoldERC721A.sol",
-        getMintEndTimestamp: "contracts/ScaffoldERC721A.sol",
-        getMintPrice: "contracts/ScaffoldERC721A.sol",
-        getMintRoyaltyRecipient: "contracts/ScaffoldERC721A.sol",
-        getMintStartTimestamp: "contracts/ScaffoldERC721A.sol",
-        isApprovedForAll: "contracts/ScaffoldERC721A.sol",
-        isWithinConstraints: "contracts/ScaffoldERC721A.sol",
-        mint: "contracts/ScaffoldERC721A.sol",
-        name: "contracts/ScaffoldERC721A.sol",
-        owner: "contracts/ScaffoldERC721A.sol",
-        ownerOf: "contracts/ScaffoldERC721A.sol",
-        renounceOwnership: "contracts/ScaffoldERC721A.sol",
-        safeTransferFrom: "contracts/ScaffoldERC721A.sol",
-        setApprovalForAll: "contracts/ScaffoldERC721A.sol",
-        supportsInterface: "contracts/ScaffoldERC721A.sol",
-        symbol: "contracts/ScaffoldERC721A.sol",
-        tokenURI: "contracts/ScaffoldERC721A.sol",
-        totalSupply: "contracts/ScaffoldERC721A.sol",
-        transferFrom: "contracts/ScaffoldERC721A.sol",
-        transferOwnership: "contracts/ScaffoldERC721A.sol",
-        withdraw: "contracts/ScaffoldERC721A.sol",
-      },
+      inheritedFunctions: {},
     },
   },
 } as const;

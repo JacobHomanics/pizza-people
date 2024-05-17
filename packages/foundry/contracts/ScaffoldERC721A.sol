@@ -15,7 +15,11 @@ contract ScaffoldERC721A is ERC721A, Ownable {
     error ScaffoldERC721A__CannotMintThatMany();
     error ScaffoldERC721A__AddressNotZero();
 
-    event Minted(address user, uint256 startIndex, uint256 endIndex);
+    event Minted(
+        address indexed user,
+        uint256 indexed startIndex,
+        uint256 indexed endIndex
+    );
 
     string s_baseURI;
     uint256 immutable s_mintStartTimestamp;
