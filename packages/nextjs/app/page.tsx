@@ -17,8 +17,6 @@ import {
   useScaffoldReadContract,
   useScaffoldWriteContract, // useScaffoldEventSubscriber,
 } from "~~/hooks/scaffold-eth";
-import fc from "~~/public/farcaster.png";
-import ig from "~~/public/instagram.png";
 // import { useFetches } from "~~/hooks/useFetches";
 // import { useUris } from "~~/hooks/useUris";
 import jake from "~~/public/pfps/jake.jpg";
@@ -26,7 +24,9 @@ import klim from "~~/public/pfps/klim.jpg";
 import mark from "~~/public/pfps/mark.jpg";
 // import bagOfWeed from "~~/public/weed-bag.png";
 import previewImage from "~~/public/preview.png";
-import twitter from "~~/public/x.png";
+import fc from "~~/public/social-icons/farcaster.png";
+import ig from "~~/public/social-icons/instagram.png";
+import twitter from "~~/public/social-icons/x.png";
 
 const DynamicCarousel = dynamic(() => import("../components/Carousel"), {
   loading: () => <p>Loading...</p>,
