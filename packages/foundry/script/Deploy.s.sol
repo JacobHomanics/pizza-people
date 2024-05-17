@@ -138,9 +138,9 @@ contract DeployScript is ScaffoldETHDeploy {
             )
         );
 
-        yourContract.mint{value: 50 * mintPrice}(
-            0x3bEc6a181d6Ef7239F699DAf2fAa5FE3A5f01Edf, 50
-        );
+        // yourContract.mint{value: 50 * mintPrice}(
+        //     0x3bEc6a181d6Ef7239F699DAf2fAa5FE3A5f01Edf, 50
+        // );
 
         vm.stopBroadcast();
 
