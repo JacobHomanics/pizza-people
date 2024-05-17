@@ -19,7 +19,7 @@ export const PfpCard = ({ name, image, twitterUrl, farcasterUrl, instagramUrl, l
   return (
     <div className="m-5">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={image.src} alt={name} className="lg:w-[275px]" />
+      <img src={image.src} alt={name} className="lg:w-[275px] rounded-full" />
       <p className="m-1 lg:m-4 grilledCheese lg:text-4xl">{name}</p>
       <div className="flex space-x-1 items-center justify-center">
         {twitterUrl ? (
