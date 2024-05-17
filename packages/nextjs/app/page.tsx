@@ -274,9 +274,7 @@ const Home: NextPage = () => {
 
         <p className="grilledCheese text-xl text-center lg:text-4xl m-4 lg:mb-10 w-[375px] lg:w-[675px]">
           {/* <span className="text-red-600">5678</span>{" "} */}
-          {
-            "A global cabal of colorful characters and personalities that share their love for pizza and live their best lives one slice at a time."
-          }
+          {"A global cabal of colorful characters that live their best lives one slice at a time."}
         </p>
         <p className="grilledCheese text-2xl text-secondary lg:text-4xl">Cheesy Samples</p>
         <DynamicCarousel />

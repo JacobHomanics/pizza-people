@@ -16,7 +16,8 @@ contract DeployScript is ScaffoldETHDeploy {
             uint256 mintEndTimestamp,
             address newOwner,
             address mintRoyaltyRecipient,
-            address[] memory initialMintRecipients
+            address[] memory initialMintRecipients,
+            uint256 mintPrice
         )
     {
         uint256 chainId;
@@ -40,8 +41,11 @@ contract DeployScript is ScaffoldETHDeploy {
                 0x136883B2841D7DE5C13EcEE65788FDE191Da5F20;
             initialMintRecipients[2] =
                 0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
+
+            mintPrice = 0.001 ether;
         } else if (chainId == 11155111) {
             maxMintCount = 5678;
+            mintPrice = 0.000001 ether;
 
             mintStartTimestamp = (vm.unixTime() / 1000) + 20 seconds;
             mintEndTimestamp = 0;
@@ -56,9 +60,25 @@ contract DeployScript is ScaffoldETHDeploy {
                 0x136883B2841D7DE5C13EcEE65788FDE191Da5F20;
             initialMintRecipients[2] =
                 0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
+        } else if (chainId == 84532) {
+            maxMintCount = 5678;
+            mintPrice = 0.000001 ether;
+            mintStartTimestamp = 0;
+            mintEndTimestamp = 0;
+
+            newOwner = 0xc689c800a7121b186208ea3b182fAb2671B337E7;
+            mintRoyaltyRecipient = 0xc689c800a7121b186208ea3b182fAb2671B337E7;
+
+            initialMintRecipients = new address[](3);
+            initialMintRecipients[0] =
+                0xc689c800a7121b186208ea3b182fAb2671B337E7;
+            initialMintRecipients[1] =
+                0x136883B2841D7DE5C13EcEE65788FDE191Da5F20;
+            initialMintRecipients[2] =
+                0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
         } else if (chainId == 8453) {
             maxMintCount = 5678;
-
+            mintPrice = 0.0006942 ether;
             mintStartTimestamp = 1713589200;
             mintEndTimestamp = 0;
 
@@ -89,7 +109,8 @@ contract DeployScript is ScaffoldETHDeploy {
             uint256 mintEndTimestamp,
             address newOwner,
             address mintRoyaltyRecipient,
-            address[] memory initialMintRecipients
+            address[] memory initialMintRecipients,
+            uint256 mintPrice
         ) = getSetup();
 
         vm.startBroadcast(deployerPrivateKey);
@@ -102,7 +123,7 @@ contract DeployScript is ScaffoldETHDeploy {
             "ipfs://bafybeih6w26bakuxg2y2kr63dl76k7hbjh3mkvsfnbzpuq2xpmpyvsny6i/",
             mintStartTimestamp,
             mintEndTimestamp,
-            0.1 ether,
+            mintPrice,
             maxMintCount,
             420,
             mintRoyaltyRecipient
@@ -115,6 +136,10 @@ contract DeployScript is ScaffoldETHDeploy {
             string.concat(
                 "YourContract deployed at: ", vm.toString(address(yourContract))
             )
+        );
+
+        yourContract.mint{value: 50 * mintPrice}(
+            0x3bEc6a181d6Ef7239F699DAf2fAa5FE3A5f01Edf, 50
         );
 
         vm.stopBroadcast();

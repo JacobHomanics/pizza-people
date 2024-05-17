@@ -2,7 +2,7 @@
 pragma solidity >=0.8.19;
 
 import "forge-std/console.sol";
-import "./Constraints.sol";
+// import "./Constraints.sol";
 import "../lib/ERC721A/contracts/ERC721A.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -107,7 +107,7 @@ contract ScaffoldERC721A is ERC721A, Ownable {
     }
 
     function isWithinConstraints() public view returns (bool isWithin) {
-        isWithin = Constraints.isWithin(
+        isWithin = _isWithinConstraints(
             block.timestamp, getMintStartTimestamp(), getMintEndTimestamp()
         );
     }
@@ -138,5 +138,26 @@ contract ScaffoldERC721A is ERC721A, Ownable {
 
     function getMintRoyaltyRecipient() external view returns (address) {
         return s_mintRoyaltyRecipient;
+    }
+
+    function _isWithinConstraints(
+        uint256 a,
+        uint256 b,
+        uint256 c
+    ) public pure returns (bool value) {
+        if (b == 0 && c == 0) {
+            value = true;
+        }
+        if (b != 0 && c != 0) {
+            value = a >= b && a <= c;
+        }
+
+        if (b == 0) {
+            value = a <= c;
+        }
+
+        if (c == 0) {
+            value = a >= b;
+        }
     }
 }
