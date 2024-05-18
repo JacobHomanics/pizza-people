@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
-export function useFetches(uris: string[]) {
-  const [responses, setResponses] = useState<any[]>([]);
+export function useTokenURIs(contract: any, tokenIds: bigint[]) {
+  const [uris, setUris] = useState<any[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -9,25 +9,23 @@ export function useFetches(uris: string[]) {
   const refetch = useCallback(async () => {
     setIsLoading(true);
 
+    console.log("got new uris");
     try {
       const arr = [];
-      for (let i = 0; i < uris.length; i++) {
-        const response = await fetch(uris[i]);
-        const responseJson = await response.json();
-        arr.push(responseJson);
+      for (let i = 0; i < tokenIds.length; i++) {
+        const result = await contract.read.tokenURI([tokenIds[i]]);
+        arr.push(result);
       }
-
-      setResponses([...arr]);
+      setUris([...arr]);
       setIsError(false);
     } catch (e) {
-      console.log("There was an error.");
       setIsError(true);
     }
 
     setIsLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(uris)]);
+  }, [contract?.address, tokenIds, uris]);
 
   useEffect(() => {
     async function get() {
@@ -36,7 +34,7 @@ export function useFetches(uris: string[]) {
 
     get();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uris, refetch]);
+  }, [contract?.address, tokenIds]);
 
-  return { responses, refetch, isLoading, isError };
+  return { uris, setUris, refetch, isLoading, isError };
 }
