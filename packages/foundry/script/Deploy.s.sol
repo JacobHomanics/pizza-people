@@ -83,7 +83,7 @@ contract DeployScript is ScaffoldETHDeploy {
                 0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
         } else if (chainId == 8453) {
             maxMintCount = 10000; //done
-            maxMintAmountPerUser = 200; //done
+            maxMintAmountPerUser = 75; //done
 
             mintPrice = 0.0006942 ether; //done
             mintStartTimestamp = 1713589200;
