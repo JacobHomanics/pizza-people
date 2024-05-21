@@ -21,6 +21,7 @@ import {
 import banner from "~~/public/banner.png";
 import ladders from "~~/public/collections-icons/laddersdotvision.png";
 import opensea from "~~/public/collections-icons/opensea.png";
+import benny from "~~/public/pfps/benny.jpg";
 // import { useFetches } from "~~/hooks/useFetches";
 // import { useUris } from "~~/hooks/useUris";
 // import { useFetches } from "~~/hooks/useFetches";
@@ -398,7 +399,7 @@ const Home: NextPage = () => {
         </div>
 
         <p className="grilledCheese text-4xl m-0 text-violet-800">Team</p>
-        <div className="flex text-center">
+        <div className="flex flex-wrap text-center justify-center items-center">
           <PfpCard
             name="Mark"
             image={mark}
@@ -426,9 +427,11 @@ const Home: NextPage = () => {
             instagramUrl="https://www.instagram.com/nonodynamo"
             linkedinUrl="https://www.linkedin.com/in/noreensullivan/"
           />
+
+          <PfpCard name="Benny" image={benny} />
         </div>
 
-        <div className="flex justify-center items-center gap-2 mb-4  mt-10">
+        <div className="flex justify-center items-center gap-2 mb-4 mt-10">
           <p className="m-0 text-center">
             Built with <HeartIcon className="inline-block h-4 w-4" /> at
           </p>
