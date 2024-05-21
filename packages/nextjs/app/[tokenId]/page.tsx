@@ -36,9 +36,10 @@ export default function NftPage({ params }: { params: { tokenId: bigint } }) {
   }
   useEffect(() => {
     setTokenIds([params["tokenId"]]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params["tokenId"]]);
 
-  const { collection } = useScaffoldTokens(tokenIds!, "nftstorage");
+  const { collection } = useScaffoldTokens(tokenIds || [], "nftstorage");
 
   console.log(collection);
 
