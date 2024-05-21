@@ -373,7 +373,7 @@ const Home: NextPage = () => {
 
         <p className="grilledCheese text-4xl m-0  mt-6 text-violet-800">View Collection</p>
         <div className="flex space-x-1 items-center justify-center space-x-5">
-          <Link href={"https://ladders.vision/collections/base/0x123"}>
+          <Link href={"https://ladders.vision/collections/base/0xF2137f6E039Cc0d2a19709a259CCCe13168cCD33"}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={ladders.src} alt="ladders.vision" className="w-16 lg:w-32" />
           </Link>
