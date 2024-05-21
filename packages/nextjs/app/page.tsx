@@ -378,20 +378,20 @@ const Home: NextPage = () => {
             <img src={ladders.src} alt="ladders.vision" className="w-16 lg:w-32" />
           </Link>
 
-          <Link href={"https://opensea.io/pizza-people"}>
+          <Link href={"https://opensea.io/collection/pizza-people-1"}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={opensea.src} alt="opensea" className="w-16 lg:w-32" />
           </Link>
         </div>
 
         <div className="flex flex-wrap justify-center mt-10">
-          <Link href={"https://bigshottoyshop.com/collections/weedies"}>
+          <Link href={"https://bigshottoyshop.com/collections/pizza-people"}>
             <button className="insanibc btn-lg bg-violet-800  hover:bg-blue-500 text-white-700 font-semibold hover:text-white py-2 text-4xl m-10">
               {"MERCH"}
             </button>
           </Link>
 
-          <Link href={"https://www.nounworks.wtf/weedies"}>
+          <Link href={"https://www.nounworks.wtf/pizza-people"}>
             <button className="insanibc btn-lg bg-violet-800  hover:bg-blue-500 text-white-700 font-semibold hover:text-white py-2 text-4xl lg:text-4xl m-10">
               {"MORE INFO"}
             </button>
