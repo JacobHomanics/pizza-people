@@ -29,7 +29,8 @@ contract DeployScript is ScaffoldETHDeploy {
         if (chainId == 31337) {
             maxMintCount = 10000;
             maxMintAmountPerUser = 10000;
-            mintStartTimestamp = (vm.unixTime() / 1000) + 20 seconds;
+            mintStartTimestamp = 1716393600;
+            // mintStartTimestamp = (vm.unixTime() / 1000) + 20 seconds;
             mintEndTimestamp = 0; //(vm.unixTime() / 1000) + 1 days;
 
             newOwner = 0xc689c800a7121b186208ea3b182fAb2671B337E7;
@@ -86,8 +87,8 @@ contract DeployScript is ScaffoldETHDeploy {
             maxMintAmountPerUser = 75; //done
 
             mintPrice = 0.0006942 ether; //done
-            mintStartTimestamp = 1713589200;
-            mintEndTimestamp = 0;
+            mintStartTimestamp = 1716393600; //done
+            mintEndTimestamp = 0; // done
 
             newOwner = 0xc689c800a7121b186208ea3b182fAb2671B337E7; // done - jake
             mintRoyaltyRecipient = 0xE5F8F468673f311110c0Ac03404C842512c3112b; // done - splits
