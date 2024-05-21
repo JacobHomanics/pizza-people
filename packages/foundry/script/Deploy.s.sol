@@ -17,7 +17,8 @@ contract DeployScript is ScaffoldETHDeploy {
             address newOwner,
             address mintRoyaltyRecipient,
             address[] memory initialMintRecipients,
-            uint256 mintPrice
+            uint256 mintPrice,
+            uint256 maxMintAmountPerUser
         )
     {
         uint256 chainId;
@@ -26,8 +27,8 @@ contract DeployScript is ScaffoldETHDeploy {
         }
 
         if (chainId == 31337) {
-            maxMintCount = 5678;
-
+            maxMintCount = 10000;
+            maxMintAmountPerUser = 10000;
             mintStartTimestamp = (vm.unixTime() / 1000) + 20 seconds;
             mintEndTimestamp = 0; //(vm.unixTime() / 1000) + 1 days;
 
@@ -44,8 +45,10 @@ contract DeployScript is ScaffoldETHDeploy {
 
             mintPrice = 0.001 ether;
         } else if (chainId == 11155111) {
-            maxMintCount = 5678;
-            mintPrice = 0.000001 ether;
+            maxMintCount = 10000;
+            maxMintAmountPerUser = 10000;
+
+            mintPrice = 0 ether;
 
             mintStartTimestamp = (vm.unixTime() / 1000) + 20 seconds;
             mintEndTimestamp = 0;
@@ -61,7 +64,9 @@ contract DeployScript is ScaffoldETHDeploy {
             initialMintRecipients[2] =
                 0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
         } else if (chainId == 84532) {
-            maxMintCount = 5678;
+            maxMintAmountPerUser = 10000;
+
+            maxMintCount = 10000;
             mintPrice = 0.000001 ether;
             mintStartTimestamp = 0;
             mintEndTimestamp = 0;
@@ -77,21 +82,29 @@ contract DeployScript is ScaffoldETHDeploy {
             initialMintRecipients[2] =
                 0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
         } else if (chainId == 8453) {
-            maxMintCount = 5678;
-            mintPrice = 0.0006942 ether;
+            maxMintCount = 10000; //done
+            maxMintAmountPerUser = 200; //done
+
+            mintPrice = 0.0006942 ether; //done
             mintStartTimestamp = 1713589200;
             mintEndTimestamp = 0;
 
-            newOwner = 0xc689c800a7121b186208ea3b182fAb2671B337E7;
-            mintRoyaltyRecipient = 0xc689c800a7121b186208ea3b182fAb2671B337E7;
+            newOwner = 0xc689c800a7121b186208ea3b182fAb2671B337E7; // done - jake
+            mintRoyaltyRecipient = 0xE5F8F468673f311110c0Ac03404C842512c3112b; // done - splits
 
-            initialMintRecipients = new address[](3);
+            initialMintRecipients = new address[](6);
             initialMintRecipients[0] =
-                0xc689c800a7121b186208ea3b182fAb2671B337E7;
+                0x136883B2841D7DE5C13EcEE65788FDE191Da5F20; //done - klim
             initialMintRecipients[1] =
-                0x136883B2841D7DE5C13EcEE65788FDE191Da5F20;
+                0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725; //done - mark
             initialMintRecipients[2] =
-                0xC2aAa18BAD26C6E78b2Ae897911e179F00C79725;
+                0xc689c800a7121b186208ea3b182fAb2671B337E7; //done - jake
+            initialMintRecipients[3] =
+                0xAD7605d5BDAd573aC10469559Afe7CD9858f5B19; //done - noreen
+            initialMintRecipients[4] =
+                0x0a36F06FC5a28768ebe9715C787122995d80DeC0; //done - benny
+            initialMintRecipients[5] =
+                0xF41a98D4F2E52aa1ccB48F0b6539e955707b8F7a; //done - pizzaDAO
         }
     }
 
@@ -110,7 +123,8 @@ contract DeployScript is ScaffoldETHDeploy {
             address newOwner,
             address mintRoyaltyRecipient,
             address[] memory initialMintRecipients,
-            uint256 mintPrice
+            uint256 mintPrice,
+            uint256 maxMintAmountPerUser
         ) = getSetup();
 
         vm.startBroadcast(deployerPrivateKey);
@@ -120,12 +134,12 @@ contract DeployScript is ScaffoldETHDeploy {
             newOwner,
             "Pizza People",
             "PP",
-            "ipfs://bafybeih6w26bakuxg2y2kr63dl76k7hbjh3mkvsfnbzpuq2xpmpyvsny6i/",
+            "ipfs://bafybeigwxkkv7fl6aedo726uzovnoxphwweclvnpgb55hhtwnyulnewnv4/",
             mintStartTimestamp,
             mintEndTimestamp,
             mintPrice,
             maxMintCount,
-            420,
+            maxMintAmountPerUser,
             mintRoyaltyRecipient
         );
 

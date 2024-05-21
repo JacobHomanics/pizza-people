@@ -18,6 +18,9 @@ import {
   useScaffoldReadContract, // useScaffoldWatchContractEvent, // useScaffoldEventSubscriber,
   useScaffoldWriteContract,
 } from "~~/hooks/scaffold-eth";
+import banner from "~~/public/banner.png";
+import ladders from "~~/public/collections-icons/laddersdotvision.png";
+import opensea from "~~/public/collections-icons/opensea.png";
 // import { useFetches } from "~~/hooks/useFetches";
 // import { useUris } from "~~/hooks/useUris";
 // import { useFetches } from "~~/hooks/useFetches";
@@ -280,6 +283,9 @@ const Home: NextPage = () => {
         <DynamicCarousel />
         <p className="grilledCheese text-center text-2xl lg:text-4xl m-7">Ready to deliver the party to you</p>
 
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={banner.src} alt="banner" className="w-[50%]" />
+
         {/* {responses.length > 0 ? (
           <>
             <div className="flex flex-wrap items-center justify-center"> {allNfts}</div>
@@ -363,7 +369,20 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center">
+        <p className="grilledCheese text-4xl m-0  mt-6 text-violet-800">View Collection</p>
+        <div className="flex space-x-1 items-center justify-center space-x-5">
+          <Link href={"https://ladders.vision/collections/base/0x123"}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={ladders.src} alt="ladders.vision" className="w-16 lg:w-32" />
+          </Link>
+
+          <Link href={"https://opensea.io/pizza-people"}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={opensea.src} alt="opensea" className="w-16 lg:w-32" />
+          </Link>
+        </div>
+
+        <div className="flex flex-wrap justify-center mt-10">
           <Link href={"https://bigshottoyshop.com/collections/weedies"}>
             <button className="insanibc btn-lg bg-violet-800  hover:bg-blue-500 text-white-700 font-semibold hover:text-white py-2 text-4xl m-10">
               {"MERCH"}
