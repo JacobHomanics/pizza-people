@@ -286,7 +286,7 @@ const Home: NextPage = () => {
         <p className="grilledCheese text-center text-2xl lg:text-4xl m-7">Ready to deliver the party to you</p>
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={banner.src} alt="banner" className="w-[50%]" />
+        <img src={banner.src} alt="banner" className="w-[100%] lg:w-[50%]" />
 
         {/* {responses.length > 0 ? (
           <>
