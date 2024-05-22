@@ -260,56 +260,13 @@ const Home: NextPage = () => {
   //     />
   //   );
   // });
+  let supplyOutput;
 
-  return (
-    <>
-      {/* <MyCarousel /> */}
-
-      {/* <MyCarousel /> */}
-
-      <div className="flex items-center flex-col flex-grow bg-base-100">
-        <div className="relative">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={hero.src} alt="Test" className="w-[400px] lg:w-[1051px] lg:h-[670px] lg:mb-4" />{" "}
-          {/* 1366px x 870px*/}
-          <div className="flex flex-wrap justify-center w-[150px] lg:w-[400px] absolute lg:inset-0 lg:h-[100px] left-[250px] lg:left-[650px] top-[30px] lg:top-[125px]">
-            {mintWindowOutput}
-          </div>
-        </div>
-
-        <p className="grilledCheese text-xl text-center lg:text-4xl m-4 lg:mb-10 w-[375px] lg:w-[675px]">
-          {/* <span className="text-red-600">5678</span>{" "} */}
-          {"A global cabal of colorful characters that live their best lives one slice at a time."}
-        </p>
-        <p className="grilledCheese text-2xl text-secondary lg:text-4xl">Cheesy Samples</p>
-        <DynamicCarousel />
+  if (supply !== 0) {
+    supplyOutput = (
+      <div>
         <p className="grilledCheese text-center text-2xl lg:text-4xl m-7">Ready to deliver the party to you</p>
-
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={banner.src} alt="banner" className="w-[100%] lg:w-[50%]" />
-
-        {/* {responses.length > 0 ? (
-          <>
-            <div className="flex flex-wrap items-center justify-center"> {allNfts}</div>
-          </>
-        ) : (
-          <button
-            onClick={async () => {
-              setMintedBlock(blockNumber);
-              await writePizzaPeopleAsync({
-                functionName: "mint",
-                args: [connectedAddress, BigInt(nugsToMint)],
-                value: mintPrice ? mintPrice * BigInt(nugsToMint) : BigInt(0),
-              });
-              await refetchMintPrice();
-              await refetchMintCount();
-              await refetchMaxMintCount();
-            }}
-          > */}
-        {/* <NftCard imgSrc={previewImage.src} /> */}
-        {/* </button>
-        )} */}
-
         <form onSubmit={onSubmit} className="flex flex-col p-2 m-2">
           <p className="text-center grilledCheese text-4xl">How many slices (to mint)</p>
           <div className="flex items-center justify-center">
@@ -349,6 +306,36 @@ const Home: NextPage = () => {
           {"Grab a slice!"}
         </button>
         <p className="m-0 mb-10 grilledCheese">*Mint</p>
+      </div>
+    );
+  } else {
+    supplyOutput = <p className="grilledCheese text-center text-2xl lg:text-4xl m-7">The shop is all outta pizza!</p>;
+  }
+
+  return (
+    <>
+      {/* <MyCarousel /> */}
+
+      {/* <MyCarousel /> */}
+
+      <div className="flex items-center flex-col flex-grow bg-base-100">
+        <div className="relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={hero.src} alt="Test" className="w-[400px] lg:w-[1051px] lg:h-[670px] lg:mb-4" />{" "}
+          {/* 1366px x 870px*/}
+          <div className="flex flex-wrap justify-center w-[150px] lg:w-[400px] absolute lg:inset-0 lg:h-[100px] left-[250px] lg:left-[650px] top-[30px] lg:top-[125px]">
+            {mintWindowOutput}
+          </div>
+        </div>
+
+        <p className="grilledCheese text-xl text-center lg:text-4xl m-4 lg:mb-10 w-[375px] lg:w-[675px]">
+          {/* <span className="text-red-600">5678</span>{" "} */}
+          {"A global cabal of colorful characters that live their best lives one slice at a time."}
+        </p>
+        <p className="grilledCheese text-2xl text-secondary lg:text-4xl">Cheesy Samples</p>
+        <DynamicCarousel />
+
+        {supplyOutput}
 
         <div className="flex flex-wrap justify-center">
           <div className="flex flex-col text-center  border-secondary border-4 rounded-lg p-2 w-32 lg:w-72 m-1">
