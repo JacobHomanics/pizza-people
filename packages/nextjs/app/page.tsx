@@ -428,7 +428,12 @@ const Home: NextPage = () => {
             linkedinUrl="https://www.linkedin.com/in/noreensullivan/"
           />
 
-          <PfpCard name="Benny" image={benny} />
+          <PfpCard
+            name="Benny"
+            image={benny}
+            twitterUrl="https://twitter.com/tenacioustoys"
+            instagramUrl="https://instagram.com/tenacioustoys"
+          />
         </div>
 
         <div className="flex justify-center items-center gap-2 mb-4 mt-10">
